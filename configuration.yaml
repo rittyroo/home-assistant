@@ -1,0 +1,154 @@
+homeassistant:
+  name:
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 218 #in meters
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+  javascript_version: latest
+  themes: !include themes.yaml
+
+# Enables configuration UI
+config:
+
+# Enable Lovelace YAML UI
+lovelace:
+  mode: yaml
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  api_password: !secret http_password
+  trusted_networks:
+    - !secret trusted_network
+# base_url:
+
+# Checks for available updates / don't like the idea of phoning home
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+#updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - google_cast
+    - sabnzbd
+    - plex_mediaserver
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+#conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+#map:
+
+# Track the sun
+#sun:
+
+# Sensors
+sensor: !include sensors.yaml
+#  - platform: hue
+#  - platform: pi_hole
+#    host: !secret pihole
+#    monitored_conditions:
+#      - dns_queries_today
+#      - ads_blocked_today
+#      - ads_percentage_today
+#      - unique_domains
+#      - domains_being_blocked
+#  - platform: synologydsm
+#    host: !secret synology
+#    username: !secret synology_user
+#    password: !secret synology_pwd
+#    monitored_conditions:
+#      - cpu_total_load
+#      - memory_real_usage
+#      - volume_status
+#      - volume_percentage_used
+
+binary_sensor: !include binary_sensors.yaml
+
+device_tracker:
+  - platform: hue
+
+# Text to speech / don't know how to use yet
+# tts:
+#  - platform: alexa
+
+# Cloud / don't know how to use yet
+# cloud:
+
+group: !include groups.yaml
+script: !include scripts.yaml
+input_select: !include ./configuration/input_select.yaml
+automation: !include_dir_merge_list automation
+
+media_player:
+#  - platform: alexa
+#    email: !secret email
+#    password: !secret alexa_pwd
+#    url: amazon.com
+  - platform: yamaha
+  - platform: braviatv
+    host: !secret sony_tv
+  - platform: webostv
+#  - platform: tivo
+#    host: !secret tivo_bolt
+#    name: Tivo LR
+#    port: 31339
+#    device: 0
+#    debug: 0
+#    zapuser: !secret email
+#    zappass: !secret zap2it_pwd
+
+remote:
+  - platform: harmony
+    name: Master Bedroom
+    host: !secret harmony_mbr
+  - platform: harmony
+    name: Living Room
+    host: !secret harmony_lr
+  - platform: harmony
+    name: Rec Room
+    host: !secret harmony_rr
+    
+netatmo:
+  api_key: !secret netatmo_api
+  secret_key: !secret netatmo_secret
+  username: !secret email
+  password: !secret netatmo_pwd
+  
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+    mode: daily
+
+zwave:
+  usb_path: /dev/ttyACM0
+
+apple_tv:
+  - host: !secret appletv_lr
+    login_id: !secret appletv_loginid
+    credentials: !secret appletv_lr_credentials 
+  - host: !secret appletv_mbr
+    login_id: !secret appletv_loginid
+    credentials: !secret appletv_rr_credentials
+  - host: !secret appletv_rr
+    login_id: !secret appletv_loginid
+    credentials: !secret appletv_mbr_credentials
+
+ios:
+
+#####
