@@ -24,7 +24,7 @@ Coming Soon
 
   - Carrier Infinity Communicating HVAC w/ Infinity Touch
   
-- # Controlled Devices
+- Controlled Devices
 
   - Hue Color x19
   - Hue White x14
