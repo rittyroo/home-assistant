@@ -10,7 +10,7 @@ Coming Soon
 - Host
 
   - Synology DS918+ w/ 8GB RAM
-  - Supermicro SYS-E300-8d w/ 32GB RAM
+    - Docker - homeassistant/home-assistant:latest
   
 - Access Devices
 
@@ -35,7 +35,7 @@ Coming Soon
   - Hue Tap x8
   - Sonos Playbar
   - Sonos Play:1 x5
-  - Ring Doorbell Pro w/ Chime
+  - Ring Doorbell Pro w/ Chime (not yet installed)
   - Z-Wave Door Sensor x4
   - Z-Wave Window Sensor x12
   - Z-Wave Leak x8
