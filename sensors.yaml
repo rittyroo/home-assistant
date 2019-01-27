@@ -1,0 +1,36 @@
+  - platform: hue
+  - platform: pi_hole
+    host: !secret pihole
+    monitored_conditions:
+      - dns_queries_today
+      - ads_blocked_today
+      - ads_percentage_today
+      - unique_domains
+      - domains_being_blocked
+      - unique_clients
+      - clients_ever_seen
+  - platform: synologydsm
+    host: !secret synology
+    username: !secret synology_user
+    password: !secret synology_pwd
+    monitored_conditions:
+      - cpu_total_load
+      - memory_real_usage
+      - volume_status
+      - volume_percentage_used
+      - volume_size_total
+#  - platform: darksky
+#    api_key: !secret darksky_api
+#    forecast:
+#      - 1
+#      - 2
+#      - 3
+#      - 4
+#      - 5
+#    monitored_conditions:
+#      - icon
+#      - temperature
+#      - temperature_high
+#     - temperature_low
+#      - precip_type
+#      - precip_accumulation
