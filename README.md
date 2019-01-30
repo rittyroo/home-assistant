@@ -1,16 +1,23 @@
 # Screenshots
 Coming Soon
+
+# Updates
+- Upgraded container to 0.86.0
+- Added new door sensors for a couple interior doors
+- Removed a few leak sensors that were unnecessary
+- Configured my Brultech GEM via the Dashbox to work with HA (!!)
+
 # My Devices
 
 - Network
   - Ubiquiti Unifi USG 3P
-  - Unifi Switch 8 PoE
-  - Unifi AP AC Lite x2
+  - Ubiquiti Unifi Switch 8 PoE
+  - Ubiquiti Unifi AP AC Lite x2
   
 - Host
 
   - Synology DS918+ w/ 8GB RAM
-    - Docker - homeassistant/home-assistant:latest
+    - Docker - homeassistant/home-assistant:latest (0.86.0)
   
 - Access Devices
 
@@ -22,7 +29,7 @@ Coming Soon
   
 - Uncontrolled Devices
 
-  - Carrier Infinity Communicating HVAC w/ Infinity Touch
+  - Carrier Infinity Communicating HVAC w/ Infinity Touch Thermostat
   
 - Controlled Devices
 
@@ -36,14 +43,15 @@ Coming Soon
   - Sonos Playbar
   - Sonos Play:1 x5
   - Ring Doorbell Pro w/ Chime (not yet installed)
-  - Z-Wave Door Sensor x4
+  - Z-Wave Door Sensor x6 (added new sensors for interior doors)
   - Z-Wave Window Sensor x12
-  - Z-Wave Leak x8
+  - Z-Wave Leak x5 (removed unneeded devices)
   - Z-Wave Plug-In Switch x3
   - Z-Wave Lock x3
   - Z-Wave Smoke/CO x5
   - Netatmo Weather Station
   - Netatmo Indoor Module x3
+  - Brultech GEM and Dashbox (added my Brultech GEM!)
   - Harmony Hub w/ Companion x3
   - Tivo Bolt w/ Mini Vox x2
   - Apple TV 4K x3
