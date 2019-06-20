@@ -1,11 +1,5 @@
-# Screenshots
-Coming Soon
-
 # Updates
-- Upgraded container to 0.86.0
-- Added new door sensors for a couple interior doors
-- Removed a few leak sensors that were unnecessary
-- Configured my Brultech GEM via the Dashbox to work with HA (!!)
+- Upgraded container to 0.94.3
 
 # My Devices
 
@@ -17,7 +11,7 @@ Coming Soon
 - Host
 
   - Synology DS918+ w/ 8GB RAM
-    - Docker - homeassistant/home-assistant:latest (0.86.0)
+    - Docker - homeassistant/home-assistant:latest (0.94.3)
   
 - Access Devices
 
@@ -26,6 +20,7 @@ Coming Soon
   - iPad 6th Gen x4
   - rPi 3 w/ 7” touchscreen
   - rPi 3 w/ 3.5” touchscreen
+  - Fire Tablet 7" x4
   
 - Uncontrolled Devices
 
