@@ -22,6 +22,9 @@
   - Aqara Door/Window Sensors x25
   - Aqara Human Body Sensors x6
   - Ikea Tradfri Outlets x3
+  - Philips Hue
+    - Hue White x10
+    - Tap x4
 
 - Security Cameras
 
