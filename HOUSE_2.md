@@ -21,3 +21,8 @@
 
   - Aqara Door/Window Sensors x25
   - Aqara Human Body Sensors x6
+
+- Security Cameras
+
+  - Wyze Cam v2 x4
+  - Wyze Pan x2
