@@ -21,6 +21,7 @@
 
   - Aqara Door/Window Sensors x25
   - Aqara Human Body Sensors x6
+  - Ikea Tradfri Outlets x3
 
 - Security Cameras
 
