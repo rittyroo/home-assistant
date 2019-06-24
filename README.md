@@ -1,5 +1,6 @@
 # Updates
 - Upgraded container to 0.94.3
+- Updated repo to include all of my directories and components/custom cards.  Some things are still a work-in-progress, but everything is now here and updated.  My previous config (pre major change) is still here but renamed with .old.
 
 # My Devices
 
