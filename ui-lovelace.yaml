@@ -1,0 +1,945 @@
+resources:
+  - url: /local/mini-media-player-bundle.js?v=0.9.8
+    type: js # default module, changed to js because forum said to
+  - url: /local/custom-lovelace/compact-custom-header/compact-custom-header.js?v0.0.1
+    type: module
+  - url: /local/simple-weather-card.bundle.js?v=0.3.0
+    type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.3.3
+    type: module
+  - url: /local/alarm_control_panel-card.js?v=1
+    type: js
+
+title: !secret hass_title
+views:
+
+########
+# HOME #
+########
+
+  - title:
+    icon: mdi:home-assistant
+    cards:
+      - type: custom:compact-custom-header
+        #menu: hide
+        #options: hide
+        voice: hide
+        notifications: hide
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+            - type: entity-button
+              entities: 
+                - binary_sensor.house_state
+              show_name: false
+            - type: vertical-stack
+              cards:
+                - type: custom:mini-graph-card
+                  entities: 
+                    - sensor.upstairs_temp_avg_mean
+                  show:
+                    icon: false
+                    name: false
+                    points: false
+                    labels: false
+                  line_color: red
+                - type: custom:mini-graph-card
+                  entities: 
+                    - sensor.total_power_usage
+                  show:
+                    graph: bar
+                    icon: false
+                    name: false
+                    points: false
+                    labels: false
+                  line_color: blue
+        - type: custom:simple-weather-card
+          entity: weather.dark_sky
+          name: "in Wheeling"
+          backdrop:
+            day: '#45aaf2'
+            night: '#a55eea'       
+
+### HOME SECURITY/SENSOR OVERVIEW
+
+      - type: vertical-stack
+        show_header: false
+        cards:
+        - type: glance
+          show_state: false
+          entities:
+          - entity: lock.front_door_lock
+            name: Locks
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+          - entity: binary_sensor.doors_open
+            name: "Doors"
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+          - entity: binary_sensor.windows_open
+            name: Windows
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+          - entity: binary_sensor.motion_detected
+            name: Motion
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+          - entity: binary_sensor.leaks
+            name: Leaks
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/1/
+
+### LIGHTING MOST USED GROUP STATUS
+
+          - entity: light.upstairs
+          - light.basement
+          - light.master
+          - light.teddy
+          - light.porch
+
+### LIGHTING MOST USED GROUP STATUS / MOVED TO GLANCE CARD ABOVE
+
+#        - type: glance
+#          show_state: false
+#          entities:
+#          - entity: light.upstairs
+#          - light.basement
+#          - light.master
+#          - light.teddy
+#          - light.porch
+
+### LIGHTING SCENE BUTTONS
+
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: Upstairs Play
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546616261492
+              service_data:
+                entity_id: script.1546616261492
+            entity: script.1546616261492
+          - type: entity-button
+            name: Upstairs Relax
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546615851244
+              service_data:
+                entity_id: script.1546615851244
+            entity: script.1546615851244
+          - type: entity-button
+            name: Upstairs Night
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546616236747
+              service_data:
+                entity_id: script.1546616236747
+            entity: script.1546616236747
+          - type: entity-button
+            name: Master Relax
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1547427409635
+              service_data:
+                entity_id: script.1547427409635
+            entity: script.1547427409635
+        - type: horizontal-stack
+          cards:
+          - type: entity-button
+            name: Basement Play
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546642171091
+              service_data:
+                entity_id: script.1546642171091
+            entity: script.1546642171091
+          - type: entity-button
+            name: Basement Spots
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546642038659
+              service_data:
+                entity_id: script.1546642038659
+            entity: script.1546642038659
+          - type: entity-button
+            name: Basement Night
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546653351412
+              service_data:
+                entity_id: script.1546653351412
+            entity: script.1546653351412
+          - type: entity-button
+            name: All_Lights Off
+            icon: mdi:google-circles-communities
+            tap_action:
+              action: call-service
+              service: script.1546653351412
+              service_data:
+                entity_id: script.1546653351412
+            entity: script.1546653351412   
+
+### TEMPERATURE AND WEATHER FORECASTS
+
+      ###- type: vertical-stack
+      ###  cards:
+          ###- type: horizontal-stack
+          ###  cards:
+            ###- type: sensor
+            ###  entity: sensor.netatmo_outside_temperature
+            ###  graph: line
+            ###  name: Outside
+            ###- type: sensor
+            ###  entity: sensor.netatmo_teddy_temperature
+            ###  graph: line
+            ###  name: Teddy
+          #- type: horizontal-stack
+           # cards:
+            #- type: custom:mini-graph-card
+            #  entities: sensor.upstairs_temp_avg_mean
+            #  graph: line
+            #  name: false
+            #  icon: false
+            #  state: false
+              #icon: mdi:thermometer
+ #     - type: vertical-stack
+ #       cards:
+ #         - type: custom:simple-weather-card
+ #           entity: weather.dark_sky
+ ##           name: " "
+ #           backdrop: true
+          ###- type: weather-forecast
+          ###  entity: weather.dark_sky
+          #- type: iframe
+            #url: https://embed.windy.com/embed2.html?lat=40.062&lon=-80.716&zoom=11&level=surface&overlay=rain&menu=&message=true&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=40.064&detailLon=-80.721&metricWind=mph&metricTemp=%C2%B0F&radarRange=-1
+            #aspect_ratio: 50%
+
+### ANYTHING CURRENTLY PLAYING // TESTING WITH ECHO BUT WILL GO BACK TO SONOS
+
+      - type: entity-filter
+        show_empty: false
+        entities:
+          #- type: custom:mini-media-player
+            #entity: media_player.living_room_atv
+            #name: aTV Living Room
+            #hide_power: true
+            #hide_volume: true
+          #- type: custom:mini-media-player
+            #entity: media_player.rec_room_atv
+            #name: aTV Rec Room
+            #hide_power: true
+            #artwork: cover
+            #hide_volume: true
+          #- type: custom:mini-media-player
+            #entity: media_player.master_bedroom_atv
+            #name: aTV Master Bedroom
+            #hide_power: true
+            #artwork: cover
+            #hide_volume: true
+          - type: custom:mini-media-player
+            entity: media_player.living_room_sonos #echo
+            name: Living Room
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_sonos #echo
+            name: Kitchen
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.dining_room_sonos #echo
+            name: Dining Room
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.rec_room_sonos #sonos
+            name: Rec Room
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.playroom_sonos #echo
+            name: Playroom
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.master_bedroom_spot #echo
+            name: Master Bedroom
+            hide_power: false
+            consider_pause_idle: true
+            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            scroll_info: true
+            icon: mdi:speaker
+          - type: custom:mini-media-player
+            entity: media_player.teddys_dot #echo
+            name: Teddy's Room
+            hide_power: true
+            hide_controls: false
+            consider_pause_idle: true
+            artwork: cover
+            show_progress: true
+            scroll_info: true
+            icon: mdi:speaker
+        state_filter:
+          - "playing"
+        card:
+          type: entities
+          title: "Currently Playing:"
+          show_header_toggle: false
+      - type: conditional
+        conditions:
+        - entity: input_select.harmonylr
+          state_not: "PowerOff"
+        card:
+          type: entities
+          entities:
+            - input_select.harmonylr
+      - type: conditional
+        conditions:
+        - entity: input_select.harmonymbr
+          state_not: "PowerOff"
+        card:
+          type: entities
+          entities:
+            - entity: input_select.harmonymbr
+      - type: conditional
+        conditions:
+        - entity: input_select.harmonyrr
+          state_not: "PowerOff"
+        card:
+          type: entities
+          entities:
+            - entity: input_select.harmonyrr
+
+############
+# SECURITY #
+############
+
+  - title:
+    icon: mdi:shield-home
+    cards:
+      - type: custom:compact-custom-header
+        menu: hide
+        options: hide
+        voice: hide
+        notifications: hide
+      - type: glance
+        title: Locks/Doors
+        entities:
+          - entity: lock.front_door_lock
+            name: "Front Door"
+      - type: glance
+        title: Windows
+        entities:
+          - entity: binary_sensor.bathroom_window
+          - entity: binary_sensor.dining_room_window
+          - entity: binary_sensor.living_room_left_window
+          - entity: binary_sensor.living_room_right_window
+          - entity: binary_sensor.master_bedroom_back_window
+          - entity: binary_sensor.master_bedroom_side_window
+          - entity: binary_sensor.teddys_room_side_window
+          - entity: binary_sensor.teddys_room_front_window
+          - entity: binary_sensor.kitchen_deck_window
+          - entity: binary_sensor.kitchen_sink_window
+      - type: glance
+        title: Motion
+        entities:
+          - entity: binary_sensor.living_motion
+            name: Living
+#          - entity: binary_sensor.hall_motion_motion
+#            name: Hall
+          - entity: binary_sensor.kitchen_motion
+            name: Kitchen
+          - entity: binary_sensor.dining_motion
+            name: Dining
+          - entity: binary_sensor.master_motion
+            name: Master
+          - entity: binary_sensor.teddy_motion
+            name: Teddy
+          - entity: binary_sensor.recroom_motion
+            name: Rec Room
+          - entity: binary_sensor.playroom_motion
+            name: Playroom
+      - type: glance
+        title: Leaks
+        entities:
+          - entity: binary_sensor.kitchen_sink_leak
+            name: Kitchen Sink
+          - entity: binary_sensor.dishwasher
+            name: Dishwasher
+          - entity: binary_sensor.hall_bath_toilet
+            name: Hall Toilet
+          - entity: binary_sensor.hall_bath_sink
+            name: Hall Sink
+
+###############
+# AUDIO/VIDEO #
+###############
+
+  - title:
+    icon: mdi:play-circle
+    cards:
+      - type: custom:compact-custom-header
+        menu: hide
+        options: hide
+        voice: hide
+        notifications: hide
+
+### MOVIES/TV
+
+      - type: entities
+        title: Movies and TV
+        show_header_toggle: false
+        entities:
+          - entity: input_select.harmonylr
+            name: Living Room
+          - entity: input_select.harmonyrr
+            name: Rec Room
+          - entity: input_select.harmonymbr
+            name: Master Bedroom
+
+### Apple TVs
+
+          #- type: custom:mini-media-player
+            #entity: media_player.living_room_atv
+            #name: aTV Living Room
+            #hide_power: true
+            #hide_volume: true
+            #artwork_border: true
+            #artwork: cover
+          #- type: custom:mini-media-player
+            #entity: media_player.rec_room_atv
+            #name: aTV Rec Room
+            #hide_power: true
+            #artwork: cover
+            #hide_volume: true
+          #- type: custom:mini-media-player
+            #entity: media_player.master_bedroom_atv
+            #name: aTV Master Bedroom
+            #hide_power: true
+            #artwork: cover
+            #hide_volume: true
+
+### AUDIO ONLY ROOMS // TESTING WITH ECHO BUT WILL GO BACK TO SONOS
+
+      - type: entities
+        title: Music
+        show_header_toggle: false
+        entities:
+
+### LIVING ROOM
+
+          - type: custom:mini-media-player
+            entity: media_player.living_room_sonos #echo
+            name: Living Room
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+
+### REC ROOM
+
+          - type: custom:mini-media-player
+            entity: media_player.rec_room_sonos #sonos
+            name: Rec Room
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+
+### KITCHEN
+
+          - type: custom:mini-media-player
+            entity: media_player.kitchen_sonos #sonos
+            name: Kitchen
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+
+### DINING ROOM
+
+          - type: custom:mini-media-player
+            entity: media_player.dining_room_sonos #sonos
+            name: Dining Room
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+
+### PLAYROOM
+
+          - type: custom:mini-media-player
+            entity: media_player.playroom_sonos #echo
+            name: Playroom
+            hide_power: true
+            consider_pause_idle: true
+#            consider_idle_after: 3
+#            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            sonos_grouping: !include sonos_grouping.yaml
+            scroll_info: true
+            show_source: true #for sonos
+            show_progress: true #for sonos
+            icon: mdi:speaker
+
+### MASTER
+
+          - type: custom:mini-media-player
+            entity: media_player.master_bedroom_spot #echo
+            name: Master Bedroom
+            hide_power: false
+            consider_pause_idle: true
+            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            scroll_info: true
+            icon: mdi:speaker
+
+### TEDDY'S ROOM
+
+          - type: custom:mini-media-player
+            entity: media_player.teddys_dot #echo
+            name: Teddy's Room
+            hide_power: false
+            consider_pause_idle: true
+            toggle_power: false
+            hide_controls: false
+            artwork: cover
+            scroll_info: true
+            icon: mdi:speaker
+
+############
+# LIGHTING #
+############
+
+  - title:
+    icon: mdi:lightbulb
+    cards:
+      - type: custom:compact-custom-header
+        menu: hide
+        options: hide
+        voice: hide
+        notifications: hide
+
+### GROUPS - HOLD ACTION FOR TOGGLE
+
+      - type: glance
+        entities:
+          - entity: light.living
+            hold_action:
+              action: toggle
+          - entity: light.kitchen
+            hold_action:
+              action: toggle
+          - entity: light.dining
+            hold_action:
+              action: toggle
+          - entity: light.hall
+            hold_action:
+              action: toggle
+          - entity: light.master
+            hold_action:
+              action: toggle
+          - entity: light.teddy
+            hold_action:
+              action: toggle
+          - entity: light.rec_room
+            hold_action:
+              action: toggle
+          - entity: light.playroom
+            hold_action:
+              action: toggle
+          - entity: light.porch
+            hold_action:
+              action: toggle
+          - entity: group.all_lights
+            name: All Lights
+            hold_action:
+              action: toggle
+
+### LIVING ROOM
+
+      - type: entities
+        title: Living Room
+        show_header_toggle: true
+        entities:
+          - entity: light.couch_left
+          - entity: light.couch_right
+          - entity: light.piano
+          - entity: light.console
+          - entity: light.tv
+          - entity: light.tv_bloom
+          - entity: script.1546741165986
+            icon: mdi:google-circles-communities
+            name: Living Room PLAY
+          - entity: script.1546741134824
+            icon: mdi:google-circles-communities
+            name: Living Room RELAX
+          - entity: script.1548261174081
+            icon: mdi:google-circles-communities
+            name: Living Room NIGHT
+
+### KITCHEN
+
+      - type: entities
+        title: Kitchen
+        show_header_toggle: true
+        entities:
+          - entity: light.kitchen_1
+          - entity: light.kitchen_2
+          - entity: light.kitchen_3
+          - entity: light.kitchen_4
+          - entity: script.1548261019657
+            icon: mdi:google-circles-communities
+            name: Kitchen PLAY
+          - entity: script.1548260997533
+            icon: mdi:google-circles-communities
+            name: Kitchen NIGHT
+
+### DINING ROOM
+
+      - type: entities
+        title: Dining Room
+        show_header_toggle: true
+        entities:
+          - entity: light.dining_1
+          - entity: light.dining_2
+          - entity: light.dining_hue
+          - entity: light.buffet
+          - entity: script.1548261434696
+            icon: mdi:google-circles-communities
+            name: Dining Room PLAY
+          - entity: script.1548261452695
+            icon: mdi:google-circles-communities
+            name: Dining Room RELAX
+          - entity: script.1548261414722
+            icon: mdi:google-circles-communities
+            name: Dining Room NIGHT
+
+### PORCH
+
+      - type: entities
+        title: Porch
+        show_header_toggle: true
+        entities:
+          - entity: light.porch
+
+### HALLWAY
+
+      - type: entities
+        title: Hallway
+        show_header_toggle: true
+        entities:
+          - entity: light.hall
+          - entity: script.1548261339551
+            icon: mdi:google-circles-communities
+            name: Hallway PLAY
+          - entity: script.1548261360080
+            icon: mdi:google-circles-communities
+            name: Hallway RELAX
+
+### MASTER BEDROOM
+
+      - type: entities
+        title: Master Bedroom
+        show_header_toggle: true
+        entities:
+          - entity: light.jason
+          - entity: light.natalie
+          - entity: light.dresser
+          - entity: script.1548261283128
+            icon: mdi:google-circles-communities
+            name: Master PLAY
+          - entity: script.1548261262192
+            icon: mdi:google-circles-communities
+            name: Master NIGHT
+          - entity: script.1548261308968
+            icon: mdi:google-circles-communities
+            name: Master COLORS
+
+### TEDDY'S BEDROOM
+
+      - type: entities
+        title: Teddy's Bedroom
+        show_header_toggle: true
+        entities:
+          - entity: light.overhead
+          - entity: light.bedside
+
+### REC ROOM
+
+      - type: entities
+        title: Rec Room
+        show_header_toggle: true
+        entities:
+          - entity: light.behind_couch_1
+          - entity: light.behind_couch_2
+          - entity: light.bookshelf
+          - entity: light.hvac
+          - entity: light.table
+          - entity: light.rr_couch_l
+          - entity: light.rr_couch_r
+
+### PLAYROOM
+
+      - type: entities
+        title: Playroom
+        show_header_toggle: true
+        entities:
+          - entity: light.laundry
+          - entity: light.dc_poster
+          - entity: light.playroom_wall_1
+          - entity: light.playroom_wall_2
+          - entity: light.playroom_1
+          - entity: light.playroom_2
+          - entity: light.playroom_3
+          - entity: light.playroom_4
+
+###########
+# CAMERAS #
+###########
+
+  - title:
+    icon: mdi:cctv
+    cards:
+      - type: custom:compact-custom-header
+        menu: hide
+        options: hide
+        voice: hide
+        notifications: hide
+
+###############
+# ADMIN_STUFF #
+###############
+
+  - title:
+    icon: mdi:settings
+    cards:
+      - type: custom:compact-custom-header
+        menu: hide
+        options: hide
+        voice: hide
+        notifications: hide
+
+### SYNOLOGY STATS
+
+#      - type: entities
+#        title: Synology DS918+
+#        show_header_toggle: false
+#        entities:
+#          - sensor.memory_usage_real
+#          - sensor.cpu_load_total
+#          - sensor.status_volume_1
+#          - sensor.total_size_volume_1
+#          - sensor.volume_used_volume_1 
+
+### PIHOLE STATS
+
+#      - type: entities
+#        title: Pi-Hole
+#        show_header_toggle: false
+#        entities:
+#          - entity: sensor.pi_hole_dns_unique_clients
+#            name: "Unique Clients"
+#          - entity: sensor.pi_hole_ads_blocked_today
+#            name: "Blocked Today"
+#          - entity: sensor.pi_hole_dns_queries_today
+#            name: "Queries Today"
+#          - entity: sensor.pi_hole_ads_percentage_blocked_today
+#            name: "Percentage Blocked"
+#          - entity: sensor.pi_hole_dns_unique_domains
+#            name: "Unique Domains"
+#          - entity: sensor.pi_hole_domains_blocked
+#            name: "Domains Blocked"
+
+### NETATMO DATA
+
+#      - type: entities
+#        title: Netatmo Data
+#        show_header_toggle: false
+#        entities:
+#          - entity: sensor.netatmo_outside_temperature
+#            name: "Outdoor Temp"
+#          - entity: sensor.netatmo_outside_humidity
+#            name: "Outdoor Humidity"
+#          - sensor.netatmo_teddy_temperature
+#          - entity: sensor.netatmo_teddy_humidity
+#            name: "Teddy's Room Humidity"
+#          - entity: sensor.netatmo_teddy_co2
+#            name: "Teddy's Room CO2"
+#          - entity: sensor.netatmo_teddy_noise
+#            name: "Teddy's Room Noise"
+#          - entity: sensor.netatmo_teddy_pressure
+#            name: "Teddy's Room Pressure"
+
+### HUE DIMMERS AND TAPS
+
+#      - type: entities
+#        title: Hue Dimmers and Taps
+#        show_header_toggle: false
+#        entities:
+#          - sensor.living_room_switch                             
+#          - sensor.kitchen_switch
+#          - sensor.deck_switch
+#          - sensor.dining_switch
+#          - sensor.hall_switch
+#          - sensor.master_switch
+#          - sensor.teddy_switch
+#          - sensor.stairs_switch
+#          - sensor.garage_switch
+#          - sensor.kitchen_tap
+#          - sensor.living_tap
+#          - sensor.master_tap
+#          - sensor.table_tap
+#          - sensor.rr_table_tap
+
+### MOTION SENSOR TEMPERATURE
+
+      - type: entities
+        title: Motion Temperature
+        show_header_toggle: false
+        entities:
+          - entity: sensor.living_motion_temperature
+            name: Living Temp
+          - entity: sensor.kitchen_motion_temp
+            name: Kitchen Temp
+          - entity: sensor.dining_motion_temp
+            name: Dining Temp
+          - entity: sensor.teddy_motion_temp
+            name: Teddy Temp
+          - entity: sensor.master_motion_temp
+            name: Master Temp
+          - entity: sensor.recroom_motion_temp
+            name: Rec Room Temp
+          - entity: sensor.playroom_motion_temp
+            name: Playroom Temp
+
+### BRULTECH GEM ENERGY DATA
+
+      - type: entities
+        title: Energy Usage
+        show_header_toggle: false
+        entities:
+          - entity: sensor.hot_water_tank
+          - entity: sensor.kitchen_outlets
+          - entity: sensor.air_conditioner
+          - entity: sensor.lr_outlets
+          - entity: sensor.lr_entertainment
+          - entity: sensor.dishwasher_energy
+          - entity: sensor.fridge
+          - entity: sensor.backyard
+          - entity: sensor.master_bedroom
+          - entity: sensor.microwave
+          - entity: sensor.rec_room
+          - entity: sensor.furnace
+          - entity: sensor.teddy_bedroom
+          - entity: sensor.dining_room
+          - entity: sensor.hall_bath
+          - entity: sensor.rec_room_bath
+          - entity: sensor.garage
+          - entity: sensor.dryer
+
+##################
+# CAR BROWSER UI #
+##################
+
+  - title:
+    icon: mdi:car
+    cards:
+      - type: custom:compact-custom-header
+        menu: hide
+        options: hide
+        voice: hide
+        notifications: hide
+
+   

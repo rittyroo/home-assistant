@@ -1,0 +1,89 @@
+homeassistant:
+  name:
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 221 #in meters
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include ./configuration/customize.yaml
+
+frontend:
+  javascript_version: latest
+  themes: !include ./configuration/themes.yaml
+
+config:
+
+lovelace:
+
+http:
+
+recorder:
+  purge_keep_days: 35
+
+history:
+
+media_player:
+
+system_health:
+
+group: !include ./configuration/groups.yaml
+
+script: !include ./configuration/scripts.yaml
+
+input_select: !include ./configuration/input_select.yaml
+
+automation old: !include_dir_merge_list automation
+
+automation: !include ./configuration/automations.yaml
+
+greeneye_monitor: !include ./configuration/gem.yaml
+
+discovery: !include ./configuration/discovery_ignore.yaml
+
+device_tracker: !include ./configuration/device_tracker.yaml
+
+sensor: !include ./configuration/sensors.yaml
+
+binary_sensor: !include ./configuration/binary_sensors.yaml
+
+variable: !include ./configuration/variables.yaml
+
+timer: !include ./configuration/timers.yaml
+
+switch: !include ./configuration/switches.yaml
+
+remote: !include ./configuration/remote.yaml
+
+camera: !include ./configuration/cameras.yaml
+    
+netatmo:
+  api_key: !secret netatmo_api
+  secret_key: !secret netatmo_secret
+  username: !secret email
+  password: !secret netatmo_pwd
+  
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+    mode: daily
+
+zwave:
+  usb_path: /dev/ttyACM0
+
+custom_updater:
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/simple-weather-card/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+    - https://raw.githubusercontent.com/robmarkcole/Hue-sensors-HASS/master/custom_updater.json
+
+utility_meter:
+  daily_energy:
+    source: sensor.energy_usage_kw
+    cycle: daily
+  monthly_energy:
+    source: sensor.energy_usage_kw
+    cycle: monthly
+
+alarm_control_panel:
+  - platform: manual
