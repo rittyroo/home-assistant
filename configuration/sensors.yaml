@@ -1,0 +1,50 @@
+  - platform: huesensor
+#  - platform: pi_hole
+#    host: !secret pihole
+#    monitored_conditions:
+#      - dns_queries_today
+#     - ads_blocked_today
+#      - ads_percentage_today
+#      - unique_domains
+#      - domains_being_blocked
+#      - unique_clients
+#      - clients_ever_seen
+#  - platform: synologydsm
+#    host: !secret synology
+#    port: !secret synology_port
+#    username: !secret synology_user
+#    password: !secret synology_pwd
+#    monitored_conditions:
+#      - cpu_total_load
+#      - memory_real_usage
+#      - volume_status
+#      - volume_percentage_used
+#      - volume_size_total
+  - platform: statistics
+    entity_id: sensor.kitchen_motion_temp
+    entity_id: sensor.living_motion_temp
+    entity_id: sensor.dining_motion_temp
+    entity_id: sensor.master_motion_temp
+    name: Upstairs Temp Avg
+    max_age:
+      minutes: 10
+  - platform: integration
+    source: sensor.total_power_usage
+    name: energy_usage_watts
+    unit: W
+    round: 1
+  - platform: integration
+    source: sensor.total_power_usage
+    name: energy_usage_kw
+    unit_prefix: k
+    round: 1
+  - platform: template
+    sensors:
+      total_power_usage:
+        value_template: '{{ ((states.sensor.air_conditioner.state | int) + (states.sensor.backyard.state | int) + (states.sensor.dining_room.state | int) + (states.sensor.dishwasher_energy.state | int) + (states.sensor.dryer.state | int) + (states.sensor.fridge.state | int) + (states.sensor.furnace.state | int) + (states.sensor.garage.state | int) + (states.sensor.hall_bath.state | int) + (states.sensor.hot_water_tank.state | int) + (states.sensor.kitchen_outlets.state | int) + (states.sensor.lr_entertainment.state | int) + (states.sensor.lr_outlets.state | int) + (states.sensor.master_bedroom.state | int) + (states.sensor.microwave.state | int) + (states.sensor.rec_room.state | int) + (states.sensor.rec_room_bath.state | int) + (states.sensor.teddy_bedroom.state | int)) }}'
+        friendly_name: 'Total Power Usage (W)'
+        unit_of_measurement: 'W'
+  - platform: airvisual
+    api_key: fiX8QWTd7vkNHpHdm
+    monitored_conditions:
+      - us

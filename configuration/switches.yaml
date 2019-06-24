@@ -1,0 +1,88 @@
+  - platform: template
+    switches:
+      relax:
+        value_template: "{{ is_state('variable.current_scene', 'relax') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.relax_on
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.relax_off
+  - platform: template
+    switches:
+      play:
+        value_template: "{{ is_state('variable.current_scene', 'play') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.play_on
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.play_off
+  - platform: template
+    switches:
+      late:
+        value_template: "{{ is_state('variable.current_scene', 'late') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.late_on
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.late_off
+  - platform: template
+    switches:
+      work:
+        value_template: "{{ is_state('switch.work', 'on') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.work_on
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.work_off
+  - platform: template
+    switches:
+      morning:
+        value_template: "{{ is_state('variable.current_scene', 'morning') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.morning_on
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.morning_off
+  - platform: template
+    switches:
+      bedtime:
+        value_template: "{{ is_state('variable.current_scene', 'bedtime') }}"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.bedtime_on
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.bedtime_off
+  - platform: template
+    switches:
+      living_sleep30:
+        value_template: "{{ 
+          is_state('timer.bedroom_sleep', 'active') and 
+          states.timer.bedroom_sleep.attributes.duration == '00:30:00' }}"
+        turn_on:
+          service: timer.start
+          data:
+            entity_id: timer.living_sleep
+            duration: '00:30:00'
+        turn_off:
+          service: timer.cancel
+          data:
+            entity_id: timer.living_sleep
+

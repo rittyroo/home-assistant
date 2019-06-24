@@ -1,0 +1,69 @@
+- id: '1557778449397'
+  alias: Relax-Tap
+  trigger:
+  - entity_id: sensor.table_tap
+    platform: state
+    to: 1_click
+  condition: []
+  action:
+  - data:
+      value: relax
+      variable: current_scene
+    service: variable.set_variable
+- id: '1557795278160'
+  alias: Late
+  trigger:
+  - entity_id: sensor.table_tap
+    platform: state
+    to: 3_click
+  condition: []
+  action:
+  - data:
+      value: late
+      variable: current_scene
+    service: variable.set_variable
+  - data:
+      entity_id: switch.late
+    service: switch.turn_on
+- id: '1557798080490'
+  alias: Relax-Var
+  trigger:
+  - entity_id: variable.current_scene
+    platform: state
+    to: relax
+  condition: []
+  action:
+  - data:
+      entity_id: switch.relax
+    service: switch.turn_on
+- id: '1557798253746'
+  alias: Play-Tap
+  trigger:
+  - entity_id: sensor.table_tap
+    platform: state
+    to: 4_click
+  condition: []
+  action:
+  - data:
+      value: play
+      variable: current_scene
+    service: variable.set_variable
+  - data:
+      entity_id: switch.play
+    service: switch.turn_on
+- id: '1557801598021'
+  alias: LR Sleep 30
+  trigger:
+  - event_data:
+      entity_id: timer.living_sleep
+    event_type: timer.finished
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: remote.living_room
+    service: remote.turn_off
+  - data:
+      message: Goodnight!
+      title: Sleep Timer Finished
+    service: notify.ios_iphone_x

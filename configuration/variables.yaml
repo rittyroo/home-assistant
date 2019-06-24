@@ -1,0 +1,13 @@
+  countdown_timer:
+    value: 30
+    attributes:
+      friendly_name: 'Countdown'
+      icon: mdi:alarm
+  countdown_trigger:
+    name: Countdown
+    value: False
+  current_scene:
+    value: 'scene_value'
+    attributes:
+      previous: ''
+    restore: true

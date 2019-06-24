@@ -1,0 +1,24 @@
+harmonyrr:
+  name: Rec Room Harmony
+  options:
+    - Tivo RR
+    - Apple TV RR
+    - Play XBox One
+    - PowerOff
+  icon: mdi:monitor
+
+harmonylr:
+  name: Living Room Harmony
+  options:
+    - Tivo LR
+    - Apple TV LR
+    - PowerOff
+  icon: mdi:monitor
+  
+harmonymbr:
+  name: Master Bed Harmony
+  options:
+    - Tivo MBR
+    - Apple TV MBR
+    - PowerOff
+  icon: mdi:monitor

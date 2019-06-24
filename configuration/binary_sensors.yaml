@@ -1,0 +1,141 @@
+  - platform: huesensor
+  - platform: template
+    sensors:
+      living_motion:
+        friendly_name: "Living Room Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.living_room_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      kitchen_motion:
+        friendly_name: "Kitchen Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.kitchen_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      dining_motion:
+        friendly_name: "Dining Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.dining_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      master_motion:
+        friendly_name: "Master Bedroom Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.master_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      teddy_motion:
+        friendly_name: "Teddy's Bedroom Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.teddy_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      recroom_motion:
+        friendly_name: "Rec Room Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.recroom_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      playroom_motion:
+        friendly_name: "Playroom Motion"
+        device_class: motion
+        value_template: >-
+          {{ states('sensor.playroom_motion_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      hall_bath_toilet:
+        friendly_name: "Hall Bath Toilet"
+        device_class: moisture
+        value_template: >-
+          {{ states('sensor.hall_bath_toilet')|float > 1 }}
+  - platform: template
+    sensors:
+      hall_bath_sink:
+        friendly_name: "Hall Bath Sink"
+        device_class: moisture
+        value_template: >-
+          {{ states('sensor.hall_bath_sink')|float > 1 }}
+  - platform: template
+    sensors:
+      dishwasher:
+        friendly_name: "Dishwasher"
+        device_class: moisture
+        value_template: >-
+          {{ states('sensor.dishwasher')|float > 1 }}
+  - platform: template
+    sensors:
+      basement_smoke:
+        friendly_name: Basement Smoke/CO Detector
+        device_class: safety
+        value_template: >-
+          {{ states('sensor.basement_smoke_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      kitchen_smoke:
+        friendly_name: Kitchen Smoke/CO Detector
+        device_class: safety
+        value_template: >-
+          {{ states('sensor.kitchen_smoke_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      hall_smoke:
+        friendly_name: Hall Smoke/CO Detector
+        device_class: safety
+        value_template: >-
+          {{ states('sensor.hall_smoke_alarm_level')|float > 254 }}
+  - platform: template
+    sensors:
+      windows_open:
+        device_class: window
+        friendly_name: "Windows Open"
+        value_template: >-
+          {{ is_state('binary_sensor.living_room_left_window', 'on')
+             or is_state('binary_sensor.living_room_right_window', 'on')
+             or is_state('binary_sensor.bathroom_window', 'on')
+             or is_state('binary_sensor.teddys_room_front_window', 'on')
+             or is_state('binary_sensor.teddys_room_side_window', 'on')
+             or is_state('binary_sensor.master_bedroom_side_window', 'on')
+             or is_state('binary_sensor.master_bedroom_back_window', 'on')
+             or is_state('binary_sensor.dining_room_window', 'on')
+             or is_state('binary_sensor.kitchen_deck_window', 'on')
+             or is_state('binary_sensor.kitchen_sink_window', 'on') }}
+  - platform: template
+    sensors:
+      leaks:
+        device_class: moisture
+        friendly_name: "Leaks"
+        value_template: >-
+          {{ is_state('binary_sensor.kitchen_sink_leak', 'on') 
+             or is_state('binary_sensor.hall_bath_toilet', 'on')
+             or is_state('binary_sensor.hall_bath_sink', 'on')
+             or is_state('binary_sensor.dishwasher', 'on') }}
+  - platform: template
+    sensors:
+      motion_detected:
+        device_class: motion
+        friendly_name: "Motion"
+        value_template: >-
+          {{ is_state('binary_sensor.living_motion', 'on')
+             or is_state('binary_sensor.hall_motion_motion', 'on')
+             or is_state('binary_sensor.dining_motion', 'on')
+             or is_state('binary_sensor.master_motion', 'on')
+             or is_state('binary_sensor.teddy_motion', 'on')
+             or is_state('binary_sensor.recroom_motion', 'on')
+             or is_state('binary_sensor.playroom_motion', 'on')
+             or is_state('binary_sensor.kitchen_motion', 'on') }}
+  - platform: template
+    sensors:
+      smoke_co_detected:
+        device_class: safety
+        friendly_name: "Smoke/CO"
+        value_template: >-
+          {{ is_state('binary_sensor.hall_smoke', 'on')
+             or is_state('binary_sensor.kitchen_smoke', 'on')
+             or is_state('binary_sensor.basement_smoke', 'on') }}

@@ -1,0 +1,40 @@
+port: 8124
+monitors:
+  - serial_number: "01000105"
+    channels:
+      - number: 2
+        name: "Hot Water Tank"
+      - number: 5
+        name: "Kitchen Outlets"
+      - number: 6
+        name: "Air Conditioner"
+      - number: 7
+        name: "LR Outlets"
+      - number: 9
+        name: "LR Entertainment"
+      - number: 10
+        name: "Kitchen Dishwasher"
+      - number: 11
+        name: "Fridge"
+      - number: 12
+        name: "Backyard"
+      - number: 13
+        name: "Master Bedroom"
+      - number: 14
+        name: "Microwave"
+      - number: 15
+        name: "Rec Room"
+      - number: 16
+        name: "Furnace"
+      - number: 17
+        name: "Teddy's Bedroom"
+      - number: 18
+        name: "Dining Room"
+      - number: 19
+        name: "Hall Bath"
+      - number: 20
+        name: "Rec Room Bath"
+      - number: 21
+        name: "Garage"
+      - number: 23
+        name: "Tesla"

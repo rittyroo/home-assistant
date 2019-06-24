@@ -1,0 +1,27 @@
+  ignore:
+    - axis
+    - belkin_wemo
+    - bluesound
+    - bose_soundtouch
+    - denonavr
+    - directv
+    - frontier_silicon
+    - google_cast
+    - igd
+    - ikea_tradfri
+    - logitech_mediaserver
+    - netgear_router
+    - octoprint
+    - openhome
+    - panasonic_viera
+    - plex_mediaserver
+    - roku
+    - sabnzbd
+    - samsung_printer
+    - samsung_tv
+    - songpal
+    - tellstick
+    - wink
+    - yamaha
+    - yeelight
+    - xiaomi_gw

@@ -1,0 +1,13 @@
+  living_sleep:
+    name: Living Room Sleep Timer
+    icon: mdi:sleep
+  master_sleep:
+    name: Master Sleep Timer
+    icon: mdi:sleep
+  teddy_sleep:
+    name: "Teddy's Sleep Timer"
+    icon: mdi:sleep
+  recroom_sleep:
+    name: Rec Room Sleep Timer
+    icon: mdi:sleep
+    

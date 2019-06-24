@@ -1,0 +1,186 @@
+'1546615851244':
+  alias: Upstairs_Relax
+  sequence:
+  - data:
+      group_name: Upstairs
+      scene_name: Relax U
+    service: hue.hue_activate_scene
+'1546616236747':
+  alias: Upstairs_Night
+  sequence:
+  - data:
+      group_name: Upstairs
+      scene_name: Night U
+    service: hue.hue_activate_scene
+'1546616261492':
+  alias: Upstairs_Play
+  sequence:
+  - data:
+      group_name: Upstairs
+      scene_name: Play U
+    service: hue.hue_activate_scene
+'1546642038659':
+  alias: Basement_Spots
+  sequence:
+  - data:
+      group_name: Basement
+      scene_name: Spots B
+    service: hue.hue_activate_scene
+'1546642153054':
+  alias: Basement_NoSpots
+  sequence:
+  - data:
+      group_name: Basement
+      scene_name: No Spots B
+    service: hue.hue_activate_scene
+'1546642171091':
+  alias: Basement_Play
+  sequence:
+  - data:
+      group_name: Basement
+      scene_name: Play B
+    service: hue.hue_activate_scene
+'1546653351412':
+  alias: Basement_LateNight
+  sequence:
+  - data:
+      group_name: Basement
+      scene_name: Late Night B
+    service: hue.hue_activate_scene
+'1546741134824':
+  alias: LivingRoom_Relax
+  sequence:
+  - data:
+      group_name: Living
+      scene_name: LR_Relax
+    service: hue.hue_activate_scene
+'1546741165986':
+  alias: LivingRoom_Play
+  sequence:
+  - data:
+      group_name: Living
+      scene_name: LR_Play
+    service: hue.hue_activate_scene
+'1547179528965':
+  alias: Upstairs_Colors
+  sequence:
+  - alias: ''
+    data:
+      group_name: Upstairs
+      scene_name: Colors U
+    service: hue.hue_activate_scene
+'1547179556822':
+  alias: Upstairs_Colors_2
+  sequence:
+  - data:
+      group_name: Upstairs
+      scene_name: Colors 2 U
+    service: hue.hue_activate_scene
+'1547427409635':
+  alias: MasterBed_Relax
+  sequence:
+  - data:
+      group_name: Master
+      scene_name: MBR_Relax
+    service: hue.hue_activate_scene
+'1548260997533':
+  alias: Kitchen_Night
+  sequence:
+  - data:
+      group_name: Kitchen
+      scene_name: KIT_Night
+    service: hue.hue_activate_scene
+'1548261019657':
+  alias: Kitchen_Play
+  sequence:
+  - data:
+      group_name: Kitchen
+      scene_name: KIT_Play
+    service: hue.hue_activate_scene
+'1548261174081':
+  alias: LivingRoom_Night
+  sequence:
+  - data:
+      group_name: Living
+      scene_name: LR_Night
+    service: hue.hue_activate_scene
+'1548261262192':
+  alias: MasterBed_Night
+  sequence:
+  - data:
+      group_name: Master
+      scene_name: MBR_Night
+    service: hue.hue_activate_scene
+'1548261283128':
+  alias: MasterBed_Play
+  sequence:
+  - data:
+      group_name: Master
+      scene_name: MBR_Play
+    service: hue.hue_activate_scene
+'1548261308968':
+  alias: MasterBed_Colors
+  sequence:
+  - data:
+      group_name: Master
+      scene_name: MBR_Colors
+    service: hue.hue_activate_scene
+'1548261339551':
+  alias: Hall_Play
+  sequence:
+  - data:
+      group_name: Hall
+      scene_name: Hall_Play
+    service: hue.hue_activate_scene
+'1548261360080':
+  alias: Hall_Relax
+  sequence:
+  - data:
+      group_name: Hall
+      scene_name: HALL_Relax
+    service: hue.hue_activate_scene
+'1548261414722':
+  alias: Dining_Night
+  sequence:
+  - data:
+      group_name: Dining
+      scene_name: DIN_Night
+    service: hue.hue_activate_scene
+'1548261434696':
+  alias: Dining_Play
+  sequence:
+  - data:
+      group_name: Dining
+      scene_name: DIN_Play
+    service: hue.hue_activate_scene
+'1548261452695':
+  alias: Dining_Relax
+  sequence:
+  - data:
+      group_name: Dining
+      scene_name: DIN_Relax
+    service: hue.hue_activate_scene
+'1557854397440':
+  alias: Relax_Button
+  sequence:
+  - data:
+      entity_id: script.1546615851244
+    service: script.1546615851244
+  - data:
+      entity_id: switch.late
+    service: switch.turn_off
+  - data:
+      entity_id: switch.bedtime
+    service: switch.turn_off
+  - data:
+      entity_id: switch.play
+    service: switch.turn_off
+  - data:
+      entity_id: switch.work
+    service: switch.turn_off
+  - data:
+      entity_id: switch.morning
+    service: switch.turn_off
+  - data:
+      entity_id: switch.relax
+    service: switch.turn_on
