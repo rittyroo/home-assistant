@@ -45,6 +45,6 @@
         friendly_name: 'Total Power Usage (W)'
         unit_of_measurement: 'W'
   - platform: airvisual
-    api_key: fiX8QWTd7vkNHpHdm
+    api_key: !secret aqi_key
     monitored_conditions:
       - us
