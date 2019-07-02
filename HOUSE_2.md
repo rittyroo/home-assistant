@@ -25,6 +25,8 @@
   - Philips Hue
     - Hue White x10
     - Tap x4
+  - Echo Dot x 2
+  - Echo Gen1
 
 - Security Cameras
 
