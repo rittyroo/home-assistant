@@ -20,9 +20,6 @@
   - iPhone X x2
   - iPad Pro x2
   - iPad 6th Gen x4
-  - rPi 3 w/ 7” touchscreen
-  - rPi 3 w/ 3.5” touchscreen
-  - Fire Tablet 7" x4
   
 - Uncontrolled Devices
 
@@ -46,6 +43,7 @@
   - Z-Wave Plug-In Switch x3
   - Z-Wave Lock x3
   - Z-Wave Smoke/CO x5
+  - Z-Wave Motion/Temp x8 (averaging temp across house)
   - Netatmo Weather Station
   - Netatmo Indoor Module x3
   - Brultech GEM and Dashbox (added my Brultech GEM!)
